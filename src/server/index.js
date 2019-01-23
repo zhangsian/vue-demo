@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const api = require('./api')
+const blogcontent = require('./blogContent')
 const infor = require('./infor')
 const fs = require('fs')
 const path = require('path')
@@ -11,6 +12,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(api)
 app.use(infor)
+app.use(blogcontent)
 // 访问静态资源文件 这里是访问所有dist目录下的静态资源文件
 app.use(express.static(path.resolve(__dirname, '../dist')))
 // 因为是单页应用 所有请求都走/dist/index.html
@@ -19,5 +21,5 @@ app.get('*', function (req, res) {
   res.send(html)
 })
 // 监听8088端口
-app.listen(8088)
+app.listen(8090)
 console.log('success listen…………')
